@@ -15,64 +15,33 @@
     <div class="main-content">
         <h2>Article</h2>
         <ul class="articles">
-            <li>
-                <img src="{% static 'images/0001.jpg' %}" width="100" height="91">
-                <div class="article-info">
-                    <h3><a href="#">The blah</a></h3>
-                    <p class="meta-info">
-                        <span class="meta-cate">fun</span>
-                        <span class="meta-cate">Wow</span>
-                    </p>
-                    <p class="description">Just say something.</p>
-                </div>
-                <div class="rate">
-                    <span class="rate-score">4.5</span>
-                </div>
-            </li>
-            <li>
-                <img src="{% static 'images/0002.jpg' %}" width="100" height="91">
-                <div class="article-info">
-                    <h3><a href="#">The blah</a></h3>
-                    <p class="meta-info">
-                        <span class="meta-cate">butt</span>
-                        <span class="meta-cate">NSFW</span>
-                    </p>
-                    <p class="description">Just say something.</p>
-                </div>
-                <div class="rate">
-                    <img src="{% static 'images/Fire.png' %}" width="18" height="18">
-                    <span class="rate-score">5.0</span>
-                </div>
-            </li>
-            <li>
-                <img src="{% static 'images/0003.jpg' %}" width="100" height="91">
-                <div class="article-info">
-                    <h3><a href="#">The blah</a></h3>
-                    <p class="meta-info">
-                        <span class="meta-cate">sea</span>
-                    </p>
-                    <p class="description">Just say something.</p>
-                </div>
-                <div class="rate">
-                    <span class="rate-score">3.5</span>
-                </div>
-            </li>
-            <li>
-                <img src="{% static 'images/0004.jpg' %}" width="100" height="91">
-                <div class="article-info">
-                    <h3><a href="#">The blah</a></h3>
-                    <p class="meta-info">
-                        <span class="meta-cate">bay</span>
-                        <span class="meta-cate">boat</span>
-                        <span class="meta-cate">beach</span>
-                    </p>
-                    <p class="description">Just say something.</p>
-                </div>
-                <div class="rate">
-                    <span class="rate-score">3.0</span>
-                </div>
-            </li>
+            {% for i in article_info %}
+                <li>
+                    <img src="{% static 'images/0001.jpg' %}" width="100" height="91">
+                    <div class="article-info">
+                        <h3><a href="#">{{ i.title }}</a></h3>
+                        <p class="meta-info">
+                            {% for tag in i.tags %}
+                                <span class="meta-cate">{{ tag }}</span>
+                            {% endfor %}
+                        </p>
+                        <p class="description">{{ i.desc }}</p>
+                    </div>
+                    <div class="rate">
+                        <span class="rate-score">{{ i.scores }}</span>
+                    </div>
+                </li>
+            {% endfor %}
         </ul>
+    </div>
+    <div class="main-content-pagitor">
+        {% if article_info.has_previous %}
+        <a href="?page={{ article_info.previous_page_number }}"> < Pre </a>
+        {% endif %}
+        <span>{{ article_info.number }} of {{ article_info.paginator.num_pages }}</span>
+        {% if article_info.has_next %}
+            <a href="?page={{ article_info.next_page_number }}"> Next ></a>
+        {% endif %}
     </div>
     <div class="footer">
         <p>&copy; Mugglecoding</p>
