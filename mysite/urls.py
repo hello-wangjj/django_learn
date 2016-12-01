@@ -16,10 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from ganji.views import index
-from pure.views import pure
+from pure.views import pure,pure_statistics
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', index),
-    url(r'^pure/', pure)
+    url(r'^pure/', pure),
+    url(r'^statistics/', pure_statistics)
 ]

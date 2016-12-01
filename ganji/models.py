@@ -12,6 +12,6 @@ class ArticleInfo(Document):
     meta = {
         'collection': 'article_info'
     }
-for i in ArticleInfo.objects:
-    print(i)
-    print(i.desc, i.title, i.scores, i.tags)
+# for i in ArticleInfo.objects:
+#     print(i)
+#     print(i.desc, i.title, i.scores, i.tags)
