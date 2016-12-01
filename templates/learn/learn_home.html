@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}wangjj{% endblock %}
+{% block content %}
+<a href="/learn_add/2/3">计算2+3</a>
+<br>
+{#不带参数#}
+<a href="{% url 'home' %}">到本页</a>
+<br>
+{#带参数#}
+<a href="{% url 'add2' 4 5 %}">计算4+5</a>
+{% endblock %}

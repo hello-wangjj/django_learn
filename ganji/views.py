@@ -11,7 +11,7 @@ def index(request):
     paginator = Paginator(article_info, limit)
     page = request.GET.get('page', 1)
     print(request)
-    print(request.GET,page)
+    print(request.GET, page)
     loaded = paginator.page(page)
     context = {
         'article_info': loaded

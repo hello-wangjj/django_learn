@@ -16,8 +16,9 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from ganji.views import index
-from pure.views import pure,pure_statistics
-from semantic_ui.views import semantic,new_data,new_chart
+from pure.views import pure, pure_statistics
+from semantic_ui.views import semantic, new_data, new_chart
+from learn import views as learn_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -26,5 +27,10 @@ urlpatterns = [
     url(r'^pure_statistics/', pure_statistics),
     url(r'^semantic_ui/', semantic),
     url(r'^new_data/', new_data),
-    url(r'^new_chart/', new_chart)
+    url(r'^new_chart/', new_chart),
+    url(r'^learn_add/$', learn_views.add, name='add'),
+    url(r'^learn_add/(\d+)/(\d+)/$', learn_views.old_add2_redirect),
+    url(r'^learn_home/$', learn_views.home, name='home'),
+    url(r'learn_new_add/(\d+)/(\d+)/$', learn_views.add2, name='add2')
+
 ]

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ganji',
     'semantic_ui',
-    'pure'
+    'pure',
+    'learn'
 ]
 
 MIDDLEWARE = [
