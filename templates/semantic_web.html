@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>A AWESOME WEB </title>
+    <link rel="stylesheet" href="{% static 'css/semantic.min.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/semantic.min.js' %}"></script>
+</head>
+<body>
+    <div class="ui sidebar inverted vertical menu left thin">
+        <div class="header item">
+            <img src="{% static 'images/logo2.png' %}">
+        </div>
+        <div class="item"> Document
+            <i class="browser icon"></i>
+        </div>
+        <div class="item"> Charts
+            <i class="bar chart icon"></i>
+        </div>
+        <div class="item"> Others
+            <i class="idea icon"></i>
+        </div>
+    </div>
+    <div class="pusher">
+        <div class="ui menu four item">
+            <a class="header item" id="menu">
+                Menu
+                <i class="icon content"></i>
+            </a>
+            <a class="item">Editorials</a>
+            <a class="item">Reviews</a>
+            <a class="item ">Upcoming Events</a>
+
+        </div>
+        <div class="ui container segment">
+            <div class="ui divided items">
+                {% for item in item_info %}
+                <div class="item">
+                    <div class="image">
+                        <img src="{% static 'images/0001.jpg' %}">
+                    </div>
+                    <div class="content">
+                        <div class="extra">
+                            {% for cate in item.cates %}
+                            <div class="ui label black">{{ cate }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="extra">
+                        <a class="header">{{ item.title }}</a>
+                        </div>
+                        <div class="meta">
+                            <span class="cinema">{{ item.price }}</span>
+                        </div>
+                        <div class="meta">
+                            <span class="cinema">{{ item.pub_date }}</span>
+                        </div>
+                        <div class="description">
+                            <p>
+                            成色[{{ item.look }}]-<a href="{{ item.url }}">购买链接</a>
+                            </p>
+                        </div>
+                        <div class="extra">
+                            {% for a in item.area %}
+                            <div class="ui label green">{{ a }}</div>
+                                {% endfor  %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="item">
+                    <div class="ui menu three item bordered">
+                        {% if item_info.has_previous %}
+                            <a class="item" href="?page={{ item_info.previous_page_number }}">
+                            <i class="left arrow icon"></i>Previous
+                        </a>
+                        {% endif %}
+
+                        <a class="disabled item">
+                            <span class="item black">Page {{ item_info.number }} of {{ item_info.paginator.num_pages }}</span>
+                        </a>
+                    {% if item_info.has_next %}
+                        <a class="item" href="?page={{ item_info.next_page_number }}">
+                            Next
+                            <i class="right arrow icon"></i>
+                        </a>
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    <script>
+        $('#menu').click(function () {
+            $('.ui.sidebar')
+                .sidebar('toggle')
+            ;
+        })
+    </script>
+</body>
+</html>

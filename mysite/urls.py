@@ -17,10 +17,12 @@ from django.conf.urls import url
 from django.contrib import admin
 from ganji.views import index
 from pure.views import pure,pure_statistics
+from semantic_ui.views import semantic
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', index),
     url(r'^pure/', pure),
-    url(r'^statistics/', pure_statistics)
+    url(r'^statistics/', pure_statistics),
+    url(r'^semantic_ui/',semantic)
 ]
