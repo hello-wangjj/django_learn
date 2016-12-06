@@ -55,11 +55,53 @@ series_TZ = [i for i in top_x('2015.12.25', '2016.01.10', ['通州'], 3)]
 series_HD = [i for i in  top_x('2015.12.25', '2016.01.10', ['海淀'], 3)]
 
 
+# 各类目的发帖量对比
+def top_cates():
+    pipeline = [
+        {'$group': {'_id': {'$slice': ['$cates', 2, 1]}, 'counts': {'$sum': 1}}}
+    ]
+    for i in ItemInfo._get_collection().aggregate(pipeline):
+        data = {
+            'name': i['_id'][0],
+            'data': [i['counts']],
+        }
+        yield data
+
+series_ALL=[i for i in top_cates()]
+xAxis_all = [i['name'] for i in top_cates()]
+
+
+def cate_distributed():
+    pipeline = [
+        {'$group': {'_id': {'$slice': ['$cates', 2, 1]}, 'counts': {'$sum': 1}}},
+        {'$sort': {'counts': -1}}
+    ]
+    for i in ItemInfo._get_collection().aggregate(pipeline):
+        yield [i['_id'][0], i['counts']]
+cate_distributed = [i for i in cate_distributed()]
+
+
+def sale_one_day():
+    pipeline = [
+        {'$match':  {'time': 1}},
+        {'$group': {'_id': {'$slice': ['$area', 1]}, 'counts': {'$sum': 1}}},
+        {'$sort': {'counts': -1}}
+    ]
+    for i in ItemInfo._get_collection().aggregate(pipeline):
+        yield [i['_id'][0], i['counts']]
+
+sale_distributed = [i for i in sale_one_day()]
+
+
 def new_chart(request):
     context = {
         'chart_CY': series_CY,
         'chart_TZ': series_TZ,
-        'chart_HD': series_HD
+        'chart_HD': series_HD,
+        'chart_ALL': series_ALL,
+        'xAxis_All': xAxis_all,
+        'cate_distributed': cate_distributed,
+        'sale_distributed': sale_distributed
     }
 
-    return render(request, 'new_chart.html',context)
+    return render(request, 'new_chart.html', context)
