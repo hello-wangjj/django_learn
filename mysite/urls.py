@@ -17,12 +17,14 @@ from django.conf.urls import url
 from django.contrib import admin
 from ganji.views import index
 from pure.views import pure,pure_statistics
-from semantic_ui.views import semantic
+from semantic_ui.views import semantic,new_data,new_chart
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', index),
     url(r'^pure/', pure),
-    url(r'^statistics/', pure_statistics),
-    url(r'^semantic_ui/',semantic)
+    url(r'^pure_statistics/', pure_statistics),
+    url(r'^semantic_ui/', semantic),
+    url(r'^new_data/', new_data),
+    url(r'^new_chart/', new_chart)
 ]

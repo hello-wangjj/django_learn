@@ -16,6 +16,7 @@ class ItemInfo(Document):
     meta = {
         'collection': 'item_info2_1'
     }
-for i in ItemInfo.objects[:10]:
-    print(i)
-    print(i.pub_date)
+# for i in ItemInfo.objects[:10]:
+#     print(i)
+#     print(i.pub_date)
+

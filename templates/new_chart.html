@@ -1,0 +1,171 @@
+{% extends 'statistics.html' %}
+{% block content %}
+<div class="ui equal width grid" style="width: 80%; margin: 10px auto;">
+        <div class="row">
+            <div class="column">
+                <div class="ui container segment">
+                    <div class="ui dropdown">
+                        <div class="text">朝阳</div>
+                        <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <div class="item" id="CY">朝阳</div>
+                            <div class="item" id="HD">海淀</div>
+                            <div class="item" id="TZ">通州</div>
+                        </div>
+                    </div>
+                    <div class="ui container" id="container"></div>
+
+                </div>
+            </div>
+
+        </div>
+</div>
+{% endblock %}
+{% block js %}
+<script>
+    $('.ui.dropdown')
+        .dropdown()
+    ;
+    $(function () {
+    $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+{#        去除水印#}
+        credits:{
+                enabled:false
+            },
+        title: {
+            text: '发帖数量最大的类目'
+        },
+        subtitle: {
+            text: '数据图表'
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '发帖数量'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: {{ chart_CY|safe }}
+    });
+});
+    $('#CY').click(function () {
+        $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '发帖数量最大的类目'
+        },
+        subtitle: {
+            text: '数据图表'
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '发帖数量'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: {{ chart_CY|safe }}
+    });
+    });
+    $('#HD').click(function () {
+       $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '发帖数量最大的类目'
+        },
+        subtitle: {
+            text: '数据图表'
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '发帖数量'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: {{ chart_HD|safe }}
+    });
+    });
+    $('#TZ').click(function () {
+        $('#container').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: '发帖数量最大的类目'
+        },
+        subtitle: {
+            text: '数据图表'
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: '发帖数量'
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: {{ chart_TZ|safe }}
+    });
+    });
+
+</script>
+{% endblock %}
