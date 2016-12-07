@@ -63,7 +63,7 @@ def top_cates():
     for i in ItemInfo._get_collection().aggregate(pipeline):
         data = {
             'name': i['_id'][0],
-            'data': [i['counts']],
+            'y': i['counts'],
         }
         yield data
 

@@ -3,17 +3,34 @@
 <div class="ui equal width grid" style="width: 80%; margin: 10px auto;">
         <div class="row">
             <div class="column">
+                <div class="ui container segment" id="all">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <div class="ui container segment" id="pie1">
+
+                </div>
+            </div>
+            <div class="column">
+                <div class="ui container segment" id="pie2">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
                 <div class="ui container segment">
                     <div class="ui dropdown">
-                        <div class="text">类目发帖总量对比</div>
+                        <div class="text">类目发帖排名前三总量对比</div>
                         <i class="dropdown icon"></i>
                         <div class="menu">
                             <div class="item" id="CY">朝阳</div>
                             <div class="item" id="HD">海淀</div>
                             <div class="item" id="TZ">通州</div>
                             <div class="item" id="test">test</div>
-                            <div class="item" id="cate_distributed">类目分布</div>
-                            <div class="item" id="sale_distributed">一天内完成交易的地区分布</div>
                         </div>
                     </div>
                     <div class="ui container" id="container"></div>
@@ -29,44 +46,47 @@
     $('.ui.dropdown')
         .dropdown()
     ;
-    $(function () {
-    $('#container').highcharts({
-        chart: {
-            type: 'column'
-        },
-{#        去除水印#}
-        credits:{
-                enabled:false
-            },
-        title: {
-            text: '发帖量统计'
-        },
-        subtitle: {
-            text: '数据图表'
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: '发帖数量'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: {{ chart_ALL|safe }}
-    });
-});
+    $('#all').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: '各个类目发帖量'
+                },
+                subtitle: {
+                    text: ''
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Total percent market share'
+                    }
+                },
+                legend: {
+                    enabled: false
+                },
+                plotOptions: {
+                    series: {
+                        borderWidth: 0,
+                        dataLabels: {
+                            enabled: true,
+                            format: '{point.y:.1f}'
+                        }
+                    }
+                },
+                tooltip: {
+                    headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                    pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.1f}</b> of total<br/>'
+                },
+                series: [{
+                    name: '类目',
+                    colorByPoint: true,
+                    data: {{ chart_ALL|safe }}
+                }]
+
+            });
     $('#CY').click(function () {
         $('#container').highcharts({
         chart: {
@@ -216,8 +236,7 @@
     });
 });
     });
-    $('#cate_distributed').click(function () {
-        $('#container').highcharts({
+    $('#pie1').highcharts({
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -256,9 +275,7 @@
 
         }]
     });
-    });
-    $('#sale_distributed').click(function () {
-        $('#container').highcharts({
+    $('#pie2').highcharts({
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: null,
@@ -296,7 +313,6 @@
 {#                },#}
 
         }]
-    });
     });
 
 </script>
