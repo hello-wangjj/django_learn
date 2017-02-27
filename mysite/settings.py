@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'ganji',
     'semantic_ui',
     'pure',
-    'learn'
+    'learn',
+    'hello'
 ]
 
 MIDDLEWARE = [

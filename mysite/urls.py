@@ -19,6 +19,7 @@ from ganji.views import index
 from pure.views import pure, pure_statistics
 from semantic_ui.views import semantic, new_data, new_chart
 from learn import views as learn_views
+from hello import views as hello_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -31,6 +32,7 @@ urlpatterns = [
     url(r'^learn_add/$', learn_views.add, name='add'),
     url(r'^learn_add/(\d+)/(\d+)/$', learn_views.old_add2_redirect),
     url(r'^learn_home/$', learn_views.home, name='home'),
-    url(r'learn_new_add/(\d+)/(\d+)/$', learn_views.add2, name='add2')
+    url(r'^learn_new_add/(\d+)/(\d+)/$', learn_views.add2, name='add2'),
+    url(r'^hello_table/$',hello_views.hello_table, name='hello_table')
 
 ]
