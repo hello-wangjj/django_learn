@@ -7,6 +7,7 @@ ganji = client['ganji']
 item_info2_1 = ganji['item_info2_1']
 connect('ganji', host='127.0.0.1', port=27017)
 
+
 class ItemInfo(Document):
     pub_date = StringField()
     look = StringField()

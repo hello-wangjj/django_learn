@@ -69,3 +69,7 @@ docs/_build/
 target/
 # db
 *.sqlite3
+# logs
+*.log
+
+migrations/
