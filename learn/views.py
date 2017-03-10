@@ -23,3 +23,8 @@ def home(request):
 
 def old_add2_redirect(request, a, b):
     return HttpResponseRedirect(reverse('add2', args=(a, b)))
+
+
+def home_add(request, id, key):
+    c = int(id) + int(key)
+    return HttpResponse(str(c))

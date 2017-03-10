@@ -7,5 +7,7 @@
 <a href="{% url 'home' %}">到本页</a>
 <br>
 {#带参数#}
-<a href="{% url 'add2' 4 5 %}">计算4+5</a>
+<a href="{% url 'add2' 4 5  %}">计算4+5</a>
+    <br>
+<a href="{% url 'home_add' 22 55 %}">计算22+55</a>
 {% endblock %}

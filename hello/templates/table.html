@@ -31,6 +31,27 @@
         {% endfor %}
    </tbody>
 </table>
-
+<br>
+<h2>if标签</h2>
+<p>
+    {% if if_test == 0 %}
+        if_test:0
+    {% elif if_test == 1 %}
+        if_test:1
+    {% endif %}
+</p>
+<h2>filter date</h2>
+{{ time|date:'D d M Y' }}
+<br>
+{{ time|date:'Y年m月d日' }}
+<br>
+<h2>转义</h2>
+{% autoescape off%}
+{{ url_baidu }}
+    <h2>filter escape</h2>
+    {{ url_baidu|escape }}
+{% endautoescape %}
+<br>
+{{ url_baidu|safe }}
 </body>
 </html>
