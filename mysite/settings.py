@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'semantic_ui',
     'pure',
     'learn',
-    'hello'
+    'hello',
+    'djangoAdvance'
 ]
 
 MIDDLEWARE = [

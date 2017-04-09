@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^learn_new_add/(\d+)/(\d+)/$', learn_views.add2, name='add2'),
     url(r'learn_home_add/(?P<id>\d{2})/(?P<key>\d{2})/$',learn_views.home_add, name='home_add'),
     url(r'^hello_table/$', hello_views.hello_table, name='hello_table'),
-    url(r'^hello/', include('hello.urls'))
+    url(r'^hello/', include('hello.urls')),
+    url(r'^djangoAdvance/', include('djangoAdvance.urls'))
 
 ]
